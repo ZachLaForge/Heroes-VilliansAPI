@@ -15,14 +15,14 @@ from .models import Super
 def supers_list(request):
     if request.method == 'GET':
         
-        # super_type_name = request.query_params.get('super_type')
-        # print(super_type_name)
+        super_type_name = request.query_params.get('type')
+        print(super_type_name)
 
 
         supers = Super.objects.all()
 
-        # if super_type_name:
-        #     supers = supers.filter(super_type__name=super_type_name)
+        if super_type_name:
+            supers = supers.filter(super_type__type=super_type_name)
 
         serializer = SuperSerializer(supers, many=True)
         return Response(serializer.data)
