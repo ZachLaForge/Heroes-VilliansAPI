@@ -22,7 +22,7 @@ def super_types_list(request):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
-@api_view(['GET', 'PUT', 'DELETE'])
+@api_view(['GET','PUT','DELETE'])
 def super_type_detail(request, pk):
     super = get_object_or_404(Super_Type, pk=pk)
 
@@ -34,6 +34,7 @@ def super_type_detail(request, pk):
 
     elif request.method == 'PUT':
         serializer = SuperTypeSerializer(super, data=request.data)
+        serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data)
 

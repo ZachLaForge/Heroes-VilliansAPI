@@ -5,3 +5,5 @@ class SuperTypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Super_Type
         fields = ['id', 'type']
+
+        type = serializers.IntegerField(write_only=True)
